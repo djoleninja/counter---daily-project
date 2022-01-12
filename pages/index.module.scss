@@ -1,0 +1,59 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.counter {
+  margin: 0 15px 15px 15px;
+  padding: 30px 30px;
+  background: rgb(121, 7, 136);
+  background: linear-gradient(35deg, rgb(93, 27, 102) 0%, rgb(43, 9, 121) 50%, rgba(0,212,255,1) 100%);
+  .count {
+    background-color: rgb(7, 82, 26);
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    width: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .resetButton {
+    font-size: 20px;
+  }
+}
+
+.button {
+  font-size: 30px;
+  padding: 5px 10px;
+  min-width: 100px;
+  background-color: #3b578f;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.buttonRemove {
+  font-size: 23px;
+  padding: 5px 10px;
+  min-width: 100px;
+  background-color: #850f0f;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.countersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
