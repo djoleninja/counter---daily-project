@@ -9,14 +9,14 @@ const Counter = ({count, id, resetCounter, incrementCounter,decrementCounter,del
       className={styles.button}
       onClick={() => incrementCounter(id)}
     >
-      +
+      ++
     </div>
 
     <div 
       className={styles.button}
       onClick={() => decrementCounter(id)}
     >
-      -
+      --
     </div>
 
 
@@ -28,7 +28,7 @@ const Counter = ({count, id, resetCounter, incrementCounter,decrementCounter,del
     </div>
     <div 
       className={styles.buttonRemove}
-      onClick={() => deleteCounter(id)}
+    
     >
       remove
     </div>
