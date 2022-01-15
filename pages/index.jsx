@@ -1,106 +1,63 @@
-import { useState } from 'react'
-import styles from './index.module.scss'
-
-const Counter = ({count, id, resetCounter, incrementCounter,decrementCounter,deleteCounter }) => (
-  <div className={styles.counter}>
-    <div className={styles.count}>{count}</div>
-
-    <div 
-      className={styles.button}
-      onClick={() => incrementCounter(id)}
-    >
-      +
-    </div>
-
-    <div 
-      className={styles.button}
-      onClick={() => decrementCounter(id)}
-    >
-      -
-    </div>
-
-
-    <div 
-      className={`${styles.button} ${styles.resetButton}`}
-      onClick={() => resetCounter(id)}
-    >
-      Reset
-    </div>
-    <div 
-      className={styles.buttonRemove}
-      onClick={() => deleteCounter(id)}
-    >
-      remove
-    </div>
-    <p> Identifier: {id} </p>
-  </div>
-)
+import { useState } from "react";
+import styles from "./index.module.scss";
+import Counter from "./Counter";
 
 export default function Home() {
-  const [countersData, setCountersData] = useState([])
-  const [id, setId] = useState(0)
+  const [countersData, setCountersData] = useState([]);
+  const [id, setId] = useState(0);
 
   const generateId = () => {
-    setId(id + 1)
-    return id
-  }
-
-
-  
+    setId(id + 1);
+    return id;
+  };
 
   const updateCounter = (id, updateFunction) => {
     const updatedCounters = countersData.map((data) => {
-      if(data.id !== id)
-        return data 
-      return {...data, count: updateFunction(data.count)}
-    })
-    setCountersData(updatedCounters)
-  }
+      if (data.id !== id) return data;
+      return { ...data, count: updateFunction(data.count) };
+    });
+    setCountersData(updatedCounters);
+  };
 
-  const resetCounter = (id) => updateCounter(id, (count) => 0)
+  const resetCounter = (id) => updateCounter(id, (count) => 0);
 
-  const removeCounter = (id) => updateCounter(id, remove())
-
-  const incrementCounter = (id) => updateCounter(id, (count) => count + 1)
-  const decrementCounter = (id) => updateCounter(id, (count) => count - 1)
+  const incrementCounter = (id) => updateCounter(id, (count) => count + 1);
+  const decrementCounter = (id) => updateCounter(id, (count) => count - 1);
 
   const addCounter = (id) => {
-    setCountersData([...countersData, {
-      count: 0,
-      id: generateId()
-    }])
-  }
-
-
-
+    setCountersData([
+      ...countersData,
+      {
+        count: 0,
+        id: generateId(),
+      },
+    ]);
+  };
 
   const resetAllCounters = () => {
-    const updatedData = countersData.map((data) => ({...data, count: 0}))
-    setCountersData(updatedData)
-  }
+    const updatedData = countersData.map((data) => ({ ...data, count: 0 }));
+    setCountersData(updatedData);
+  };
 
+  const deleteCounter = (id) => {
+    const updatedData = countersData.filter((counter) => id !== counter.id);
+    setCountersData(updatedData);
+  };
   return (
     <div className={styles.container}>
-      <div 
-        className={styles.button}
-        onClick={addCounter}
-      >
+      <div className={styles.button} onClick={addCounter}>
         Add Counter
       </div>
 
-  
-
-      <div 
-        className={styles.button}
-        onClick={resetAllCounters}
-      >
+      <div className={styles.button} onClick={resetAllCounters}>
         Reset All
       </div>
 
-
       <div className={styles.countersContainer}>
-        {countersData.map((data) => (
-          <Counter 
+        {countersData.map((data, index) => (
+          <Counter
+            deleteCounter={() => deleteCounter(data.id)}
+            key={index}
             {...data}
             resetCounter={resetCounter}
             incrementCounter={incrementCounter}
@@ -109,5 +66,5 @@ export default function Home() {
         ))}
       </div>
     </div>
-  )
+  );
 }
