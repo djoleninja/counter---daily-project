@@ -42,6 +42,7 @@ export default function Home() {
   const deleteCounter = (id) => {
     const updatedData = countersData.filter((counter) => id !== counter.id);
     setCountersData(updatedData);
+    if (!updatedData.length) setId(0);
   };
   return (
     <div className={styles.container}>
